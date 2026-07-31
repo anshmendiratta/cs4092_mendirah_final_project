@@ -21,10 +21,9 @@ def destroy_db_connection(cursor: sqlite3.Cursor) -> None:
 
 
 def pretty_print_query(cursor: sqlite3.Cursor, query: str) -> None:
-    cursor.execute(query)
+    cursor.executescript(query)
 
     for row in cursor.fetchall():
-        # print("HELLO")
         print(row)
 
     print()

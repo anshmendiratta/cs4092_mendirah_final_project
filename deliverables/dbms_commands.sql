@@ -1,3 +1,5 @@
+-- NOTE: RUN IN SQLITE3
+
 PRAGMA foreign_keys = ON
 
 -- ---------------------
@@ -96,11 +98,11 @@ VALUES
 INSERT INTO Product
     (Name, Description, Price, Stock, StaffID)
 VALUES
-    ('Mechanical Keyboard', 'RGB mechanical keyboard', 89.99, 25, 2),
+    ('Mechanical Keyboard', 'RGB brown switches mechanical keyboard', 89.99, 25, 2),
     ('Gaming Mouse', 'Wireless gaming mouse', 49.99, 40, 2),
-    ('27-inch Monitor', '144Hz IPS monitor', 249.99, 15, 1),
+    ('27-inch Monitor', '360Hz IPS monitor', 249.99, 15, 1),
     ('USB-C Hub', '6-port USB-C hub', 39.99, 60, 3),
-    ('Webcam', '1080p USB webcam', 69.99, 30, 3);
+    ('Webcam', '1080p USB-A webcam', 69.99, 30, 3);
 
 INSERT INTO CreditCard
     (CustomerID, CardNumber, ExpirationMonth, ExpirationYear, CardholderName)
