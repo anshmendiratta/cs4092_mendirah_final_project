@@ -10,6 +10,8 @@ def init_db_connection(db_path: str) -> [sqlite3.Connection, sqlite3.Cursor]:
     # Delete DB if already exists to avoid needing to drop tables.
     if file_path.is_file():
         file_path.unlink(missing_ok=True)  # Ignore error if file does not exist.
+    else:
+        file_path.touch()  # Create if not available.
 
     connection = sqlite3.connect(db_path)
     return (connection, connection.cursor())
