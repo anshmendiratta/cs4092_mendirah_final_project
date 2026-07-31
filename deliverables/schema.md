@@ -1,6 +1,5 @@
 Customer(
     CustomerID PK,
-
     FirstName,
     LastName,
     Email,
@@ -9,7 +8,6 @@ Customer(
 
 Staff(
     StaffID PK,
-    
     FirstName,
     LastName,
     Position
@@ -18,7 +16,6 @@ Staff(
 Product(
     ProductID PK,
     StaffID FK
-
     Name,
     Description,
     Price,
@@ -28,7 +25,6 @@ Product(
 CreditCard(
     CardID PK,
     CustomerID FK,
-
     CardNumber,
     ExpirationMonth,
     ExpirationYear,
@@ -39,16 +35,13 @@ Purchase(
     PurchaseID PK,
     CustomerID FK,
     CardID FK,
-
     PurchaseDate
 )
 
 PurchaseItem(
     PurchaseID FK,
     ProductID FK,
-
     Quantity,
     UnitPrice,
-
     PK(PurchaseID, ProductID)
 )
