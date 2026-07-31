@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+src/cs4092_mendirah_final_project.egg-info/PKG-INFO
+src/cs4092_mendirah_final_project.egg-info/SOURCES.txt
+src/cs4092_mendirah_final_project.egg-info/dependency_links.txt
+src/cs4092_mendirah_final_project.egg-info/requires.txt
+src/cs4092_mendirah_final_project.egg-info/top_level.txt
