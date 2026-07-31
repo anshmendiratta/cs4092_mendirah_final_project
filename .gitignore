@@ -1,6 +1,7 @@
+.gitignore
 .venv
 .python-version
-.uv.lock
+uv.lock
 
 dist
 .git
