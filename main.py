@@ -1,9 +1,10 @@
-import utilities as ut
+import src.utilities as ut
 
 
 def main() -> None:
-    cursor = ut.init_db_connection()
+    connection, cursor = ut.init_db_connection()
     ut._create_tables(cursor)
+    connection.commit()
 
     ut.destroy_db_connection(cursor)
 
