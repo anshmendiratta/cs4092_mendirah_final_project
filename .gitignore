@@ -4,4 +4,4 @@
 
 dist
 .git
-
+src/__pycache__
