@@ -1,6 +1,5 @@
 import sqlite3
 
-from typing import List
 from pathlib import Path
 
 
@@ -19,6 +18,16 @@ def init_db_connection(db_path: str) -> [sqlite3.Connection, sqlite3.Cursor]:
 
 def destroy_db_connection(cursor: sqlite3.Cursor) -> None:
     cursor.close()
+
+
+def pretty_print_query(cursor: sqlite3.Cursor, query: str) -> None:
+    cursor.execute(query)
+
+    for row in cursor.fetchall():
+        # print("HELLO")
+        print(row)
+
+    print()
 
 
 def create_tables(connection: sqlite3.Connection, cursor: sqlite3.Cursor) -> None:
