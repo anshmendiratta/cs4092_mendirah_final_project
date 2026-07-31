@@ -41,9 +41,9 @@ def _cleanup(cc: Optional[c.Context]) -> None:
     ut.destroy_db_connection(cursor)
 
 
-# App. Needs not functionality on its own.
+# Main app. Contains startup code.
 @cs.shell(prompt="> ", intro="CS4092 Final Project CLI", on_finished=_cleanup)
-def _cli():
+def _cli() -> None:
     ut.create_tables(connection, cursor)
     ut.insert_values(connection, cursor)
 
@@ -73,43 +73,72 @@ def list() -> None:
     for idx, table in enumerate(ALL_TABLES):
         print(f"{idx + 1}. {table}")
 
+    print()
+
 
 @_cli.command()
 def view() -> None:
-    table_name = str(input("Which table would you like to list? ")).strip()
+    table = str(input("Which table would you like to list? ")).strip()
+    print()
 
-    print(f"=== {table_name} ===")
+    print(f"=== {table} ===")
 
-    cursor.execute(f"SELECT * FROM {table_name}")
+    cursor.execute(f"SELECT * FROM {table};")
     for row in cursor.fetchall():
         print(row)
+
+    print()
+
+
+@_cli.command()
+def select() -> None:
+    table: str = input("Select from which table? ").strip()
+    attributes: List[str] = REQUIRED_FIELDS[f"{table}"]
+
+    selected_attributes: List[str] = (
+        input(
+            f"""You may select from the following attributes: {attributes}. If you wish to select several, simply separate the desired columns by a comma.
+Attributes: """
+        )
+        .replace(" ", "")
+        .split(",")
+    )
+    print()
+
+    cursor.execute(f"SELECT {','.join(selected_attributes)} FROM {table};")
+
+    print(f"=== {table} {selected_attributes} ===")
+    for row in cursor.fetchall():
+        print(row)
+
+    print()
 
 
 @_cli.command()
 def insert() -> None:
-    table_name = input("Insert into which table? ").strip()
+    table: str = input("Insert into which table? ").strip()
+    print()
 
-    required_input: List[str] = REQUIRED_FIELDS[f"{table_name}"]
+    required_input: List[str] = REQUIRED_FIELDS[f"{table}"]
     user_data: List[any] = []
-
-    print("HELP")
 
     for idx, req in enumerate(required_input):
         user_input = input(f"{req}: ").strip()
-        required_type: type = REQUIRED_FIELDS_TYPES[f"{table_name}"][idx]
+        required_type: type = REQUIRED_FIELDS_TYPES[f"{table}"][idx]
         user_data.append(required_type(user_input))
-
-    print("HELP")
 
     columns = ", ".join(required_input)
     placeholders = ", ".join(["?"] * len(user_data))
 
     cursor.execute(
         f"""
-        INSERT INTO {table_name}
+        INSERT INTO {table}
             ({columns})
         VALUES
-            ({placeholders})
+            ({placeholders});
         """,
         user_data,
     )
+
+    print("Inserted.")
+    print()
