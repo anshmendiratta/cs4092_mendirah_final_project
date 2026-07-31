@@ -53,5 +53,4 @@ PurchaseItem(
 
     PK(PurchaseID, ProductID)
 )
-
 ```
