@@ -1,3 +1,4 @@
+```
 Customer(
     CustomerID PK,
 
@@ -9,7 +10,7 @@ Customer(
 
 Staff(
     StaffID PK,
-    
+
     FirstName,
     LastName,
     Position
@@ -52,3 +53,4 @@ PurchaseItem(
 
     PK(PurchaseID, ProductID)
 )
+```
